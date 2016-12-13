@@ -1,0 +1,26 @@
+{
+  "name": "nearby-news",
+  "version": "0.1.0",
+  "description": "Keyword Cloud for your current location",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueT/nearby-news.git"
+  },
+  "keywords": [
+    "location",
+    "cloud",
+    "news",
+    "travel",
+    "LBS"
+  ],
+  "author": "BlueT - Matthew Lien - 練喆明 <BlueT@BlueT.org> (http://BlueT.org/)",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BlueT/nearby-news/issues"
+  },
+  "homepage": "https://github.com/BlueT/nearby-news#readme"
+}
