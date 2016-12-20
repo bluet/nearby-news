@@ -10,7 +10,7 @@ info:
     url: https://github.com/BlueT/nearby-news
   license:
     name: AGPL-3.0
-    url: http://opensource.org/licenses/MIT
+    url: http://opensource.org/licenses/AGPL-3.0
 host: nearby.lc
 basePath: /api
 schemes:
