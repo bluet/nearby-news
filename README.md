@@ -23,3 +23,4 @@ A prototype system. NCNU BigData lecture project.
 - Diags https://cacoo.com/diagrams/zFHADLJOpHNowcYL#65F5B
 - Wireframe https://invis.io/VT9M4KO7R
 - Slide https://docs.google.com/presentation/d/1Il1CRVJDEXHyQfRYY71MkgUOekWvhwQLN_WfsOYOKOk/edit?usp=sharing
+- Sample data https://docs.google.com/spreadsheets/d/1xcu-0PaMgywk60JRi_6ES6v6BCxXzDrWxwyNP05OKIw/edit?usp=sharing
