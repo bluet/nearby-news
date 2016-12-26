@@ -1,18 +1,18 @@
 {
-	id: 1,
+	id: 66117,
 	title: '捐發票抽住宿券！ 日月潭花火音樂會很公益',
 	location: r.point(120.943284,23.965098),
 	keywords: [
 		'旅遊',
-		'犯罪',
 		'住宿',
+		'旅館',
 		'日月潭',
 		'嘉年華',
 		'煙火',
 		'魚池',
 		'茶葉蛋'
 	],
-	timestamp: r.ISO8601("2013-08-09T10:58:00.1111+08:00"),
+	timestamp: r.ISO8601("2016-10-28T00:00:00+08:00"),
 	source: 'http://news.ltn.com.tw/news/life/breakingnews/1869047',
 	source_site: 'LTN',
 	category: ['旅遊'],
@@ -20,4 +20,13 @@
 }
 
 
-r.table('nearby_news').indexCreate('location', {geo: true})
+r.db('nearby_news').table('news_entry').indexCreate('location', {geo: true})
+r.db('nearby_news').table('news_entry')
+  .getIntersecting(
+    r.circle(
+      [120.943284,23.965098],
+      1000,
+      {unit: "m"}
+    ),
+    {index: "location"}
+  )
