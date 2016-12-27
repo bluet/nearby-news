@@ -34,13 +34,13 @@ paths:
           in: query
           description: Latitude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: longitude
           in: query
           description: Longititude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: radius
           in: query
@@ -73,13 +73,13 @@ paths:
           in: query
           description: Latitude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: longitude
           in: query
           description: Longititude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: radius
           in: query
@@ -94,6 +94,45 @@ paths:
             type: array
             items:
               $ref: '#/definitions/categorydEntry'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /news:
+    get:
+      description: Returns all news from the system that the user has access to (for Rich Client)
+      operationId: findNews
+      produces:
+        - application/json
+        - application/xml
+        - text/xml
+        - text/html
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude of current location
+          required: true
+          type: number
+          format: float
+        - name: longitude
+          in: query
+          description: Longititude of current location
+          required: true
+          type: number
+          format: float
+        - name: radius
+          in: query
+          description: Radius of current view
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: news response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/newsEntry'
         default:
           description: unexpected error
           schema:
@@ -117,13 +156,13 @@ paths:
           in: query
           description: Latitude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: longitude
           in: query
           description: Longititude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: radius
           in: query
@@ -161,13 +200,13 @@ paths:
           in: query
           description: Latitude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: longitude
           in: query
           description: Longititude of current location
           required: true
-          type: integer
+          type: number
           format: float
         - name: radius
           in: query
@@ -238,15 +277,17 @@ definitions:
           type: string
       timestamp:
         type: string
+        format: date-time
       source:
         type: string
       source_site:
         type: string
       category:
-        type: string
+        type: array
+        items:
+          type: string
       positive:
-        type: integer
-        format: int32
+        type: boolean
   location:
     type: object
     required:
@@ -254,10 +295,10 @@ definitions:
       - latitude
     properties:
       longitude:
-        type: integer
+        type: number
         format: float
       latitude:
-        type: integer
+        type: number
         format: float
   keywordEntry:
     type: object
@@ -268,8 +309,8 @@ definitions:
       name:
         type: string
       score:
-        type: integer
-        format: int32
+        type: number
+        format: float
   categorydEntry:
     type: object
     required:
