@@ -5,18 +5,16 @@
   "description": "Keyword Cloud for your current location",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
+    "prestart": "npm install",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "private": true,
   "dependencies": {
-    "body-parser": "~1.15.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "express": "~4.14.0",
-    "jade": "~1.11.0",
-    "morgan": "~1.7.0",
-    "rethinkdbdash": "^2.3.27",
-    "serve-favicon": "~2.3.0"
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1",
+    "rethinkdbdash": "*"
   },
   "repository": {
     "type": "git",
@@ -27,7 +25,8 @@
     "cloud",
     "news",
     "travel",
-    "LBS"
+    "LBS",
+    "swagger"
   ],
   "author": "BlueT - Matthew Lien - 練喆明 <BlueT@BlueT.org> (http://BlueT.org/)",
   "license": "AGPL-3.0",

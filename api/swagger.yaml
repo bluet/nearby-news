@@ -1,0 +1,342 @@
+---
+swagger: "2.0"
+info:
+  description: "A simple API service that tells you about what's hot near you."
+  version: "1.0.0"
+  title: "Nearby News"
+  termsOfService: "https://github.com/BlueT/nearby-news/blob/master/TOS.txt"
+  contact:
+    name: "Nearby News team"
+    url: "https://github.com/BlueT/nearby-news"
+    email: "BlueT@BlueT.org"
+  license:
+    name: "AGPL-3.0"
+    url: "http://opensource.org/licenses/AGPL-3.0"
+basePath: "/api"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /categories:
+    get:
+      description: "Returns all categories from the system that the user has access\
+        \ to"
+      operationId: "findCategory"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "longitude"
+        in: "query"
+        description: "Longititude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "radius"
+        in: "query"
+        description: "Radius of current view"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "categories response"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+  /keywords:
+    get:
+      description: "Returns all keywords from the system that the user has access\
+        \ to"
+      operationId: "findKeyword"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "longitude"
+        in: "query"
+        description: "Longititude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "radius"
+        in: "query"
+        description: "Radius of current view"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "keywords response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/keywordEntry"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+  /news:
+    get:
+      description: "Returns all news from the system that the user has access to (for\
+        \ Rich Client)"
+      operationId: "findNews"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "longitude"
+        in: "query"
+        description: "Longititude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "radius"
+        in: "query"
+        description: "Radius of current view"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "news response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/newsEntry"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+  /news/category/{category}:
+    get:
+      description: "Returns all news with keyword from the system that the user has\
+        \ access to"
+      operationId: "findNewsByCategory"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "category"
+        in: "path"
+        description: "News in which keyword"
+        required: true
+        type: "string"
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "longitude"
+        in: "query"
+        description: "Longititude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "radius"
+        in: "query"
+        description: "Radius of current view"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "news response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/newsEntry"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+  /news/keyword/{keyword}:
+    get:
+      description: "Returns all news with keyword from the system that the user has\
+        \ access to"
+      operationId: "findNewsByKeyword"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "keyword"
+        in: "path"
+        description: "News in which keyword"
+        required: true
+        type: "string"
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "longitude"
+        in: "query"
+        description: "Longititude of current location"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "radius"
+        in: "query"
+        description: "Radius of current view"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "news response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/newsEntry"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+  /news/{id}:
+    get:
+      description: "Returns a news based on a single ID"
+      operationId: "findNewsById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of news to fetch"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "news response"
+          schema:
+            $ref: "#/definitions/newsEntry"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+definitions:
+  newsEntry:
+    type: "object"
+    required:
+    - "category"
+    - "id"
+    - "keywords"
+    - "location"
+    - "positive"
+    - "source"
+    - "source_site"
+    - "timestamp"
+    - "title"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      location:
+        $ref: "#/definitions/location"
+      keywords:
+        type: "array"
+        items:
+          type: "string"
+      timestamp:
+        type: "string"
+        format: "date-time"
+      source:
+        type: "string"
+      source_site:
+        type: "string"
+      category:
+        type: "array"
+        items:
+          type: "string"
+      positive:
+        type: "boolean"
+  location:
+    type: "object"
+    required:
+    - "latitude"
+    - "longitude"
+    properties:
+      longitude:
+        type: "number"
+        format: "float"
+      latitude:
+        type: "number"
+        format: "float"
+  keywordEntry:
+    type: "object"
+    required:
+    - "name"
+    - "score"
+    properties:
+      name:
+        type: "string"
+      score:
+        type: "number"
+        format: "float"
+  categorydEntry:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+  errorModel:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
