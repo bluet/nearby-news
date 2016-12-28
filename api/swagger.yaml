@@ -1,8 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "A simple API service that tells you about what's hot near you."
-  version: "1.0.0"
+  description: "Keyword Cloud for your current location. A simple API service telling you what's hot near you."
+  version: "0.1.0"
   title: "Nearby News"
   termsOfService: "https://github.com/BlueT/nearby-news/blob/master/TOS.txt"
   contact:
@@ -322,13 +322,6 @@ definitions:
       score:
         type: "number"
         format: "float"
-  categorydEntry:
-    type: "object"
-    required:
-    - "name"
-    properties:
-      name:
-        type: "string"
   errorModel:
     type: "object"
     required:

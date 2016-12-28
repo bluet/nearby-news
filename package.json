@@ -2,7 +2,7 @@
   "name": "nearby-news",
   "version": "0.1.0",
   "private": true,
-  "description": "Keyword Cloud for your current location",
+  "description": "Keyword Cloud for your current location. A simple API service telling you what's hot near you.",
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",

@@ -1,5 +1,5 @@
 # nearby-news
-Keyword Cloud for your current location.
+Keyword Cloud for your current location. A simple API service telling you what's hot near you.
 
 A prototype system. NCNU BigData lecture project.
 
