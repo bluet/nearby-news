@@ -20,7 +20,7 @@ for (var i = 0; i < rawObj.length; i++) {
 //transfer the miidle object to the target object
 for (var i = 0; i < middleObj.length; i++) {
   var timeDiff = Math.floor(currentTime - middleObj[i].timestamp);
-  var index = targetObj.map(function(o) { return o.name; }).indexOf(middleObj[i].keywords); // If keywords were not found in target object, push it. Otherwise, re-caculate the score of the keyword
+  const index = targetObj.findIndex(item => item.name === middleObj[i].keywords); // If keywords were not found in target object, push it. Otherwise, re-caculate the score of the keyword
   if (index === -1) {
     targetObj.push({"name":middleObj[i].keywords, "score": calculateScore(timeDiff)});
   }
