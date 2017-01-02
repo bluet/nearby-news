@@ -94,9 +94,7 @@ paths:
         200:
           description: "keywords response"
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/keywordEntry"
+            $ref: "#/definitions/keywordEntry"
         default:
           description: "unexpected error"
           schema:
@@ -313,13 +311,8 @@ definitions:
         format: "float"
   keywordEntry:
     type: "object"
-    required:
-    - "name"
-    - "score"
     properties:
-      name:
-        type: "string"
-      score:
+      keyword:
         type: "number"
         format: "float"
   errorModel:
