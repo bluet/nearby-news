@@ -3,6 +3,7 @@ var r = require('rethinkdbdash')({
 	db: 'nearby_news',
 	host: 'localhost'
 });
+var scoreCal = require(__dirname + '/../lib/scoreCal.js');
 
 
 exports.findCategory = function(args, res, next) {
@@ -52,13 +53,19 @@ exports.findKeyword = function(args, res, next) {
 			),
 			{index: "location"}
 		)
-		.withFields('keywords', 'location', 'timestamp')
-		.concatMap( function(entry) { return entry('keywords') } )
-		.distinct()
+		//~ .withFields('keywords', 'location', 'timestamp')
+		.withFields('keywords', 'timestamp')
+		//~ .concatMap( function(entry) { return entry('keywords') } )
+		//~ .distinct()
+		.map(function (entry) {
+			return entry.merge({timestamp: entry('timestamp').toEpochTime()});
+		})
 		.run()
 		.then(function(entries) {
 			res.setHeader('Content-Type', 'application/json');
-			res.end(JSON.stringify(entries));
+			//~ res.end(JSON.stringify(entries));
+			//~ console.log(entries);
+			res.end(JSON.stringify( scoreCal(entries) ));
 		})
 		.error( function(){ res.end(); } );
 	
