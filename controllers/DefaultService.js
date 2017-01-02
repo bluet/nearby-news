@@ -28,6 +28,9 @@ exports.findCategory = function(args, res, next) {
 		.distinct()
 		.run()
 		.then(function(entries) {
+			//~ res.setHeader('Access-Control-Allow-Origin', '*');
+			//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+			//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 			res.setHeader('Content-Type', 'application/json');
 			res.end(JSON.stringify(entries));
 		})
@@ -62,6 +65,9 @@ exports.findKeyword = function(args, res, next) {
 		})
 		.run()
 		.then(function(entries) {
+			//~ res.setHeader('Access-Control-Allow-Origin', '*');
+			//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+			//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 			res.setHeader('Content-Type', 'application/json');
 			//~ res.end(JSON.stringify(entries));
 			//~ console.log(entries);
@@ -97,6 +103,9 @@ exports.findNews = function(args, res, next) {
 			var result = {};
 			result['application/json'] = entries;
 			if(Object.keys(result).length > 0) {
+				//~ res.setHeader('Access-Control-Allow-Origin', '*');
+				//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+				//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 				res.setHeader('Content-Type', 'application/json');
 				res.end(JSON.stringify(result[Object.keys(result)[0]] || {}, null, 2));
 			}
@@ -131,6 +140,9 @@ exports.findNewsByCategory = function(args, res, next) {
 		})
 		.run()
 		.then(function(entries) {
+			//~ res.setHeader('Access-Control-Allow-Origin', '*');
+			//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+			//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 			res.setHeader('Content-Type', 'application/json');
 			res.end(JSON.stringify(entries));
 		})
@@ -160,6 +172,9 @@ exports.findNewsByKeyword = function(args, res, next) {
 		})
 		.run()
 		.then(function(entries) {
+			//~ res.setHeader('Access-Control-Allow-Origin', '*');
+			//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+			//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 			res.setHeader('Content-Type', 'application/json');
 			res.end(JSON.stringify(entries));
 		})
@@ -177,6 +192,9 @@ exports.findNewsById = function(args, res, next) {
 		.get(args.id.value)
 		.run()
 		.then(function(entries) {
+			//~ res.setHeader('Access-Control-Allow-Origin', '*');
+			//~ res.setHeader('Access-Control-Allow-Credentials', 'true');
+			//~ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
 			res.setHeader('Content-Type', 'application/json');
 			res.end(JSON.stringify(entries));
 		})
