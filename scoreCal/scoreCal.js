@@ -1,31 +1,30 @@
+// 0.169152321 seconds time elapsed
+
 //read the JSON file
 var fs = require('fs');
 var rawObj = JSON.parse(fs.readFileSync('testfile.json', 'utf8'));
-var currentTime = Math.floor(Date.now() / 1000);
-var middleObj = [];
-var targetObj = [];
+var currentTime = Math.round(Date.now() / 1000);
+var result = {};
 
-// score calculation
-function calculateScore(timeDiff) {
-  return 1 / (timeDiff / 86400 / 30);
-}
+// forEach's faster than .map or .every
+rawObj.forEach(function(keywordSet) {
+	var timeDiff = currentTime - Math.round(keywordSet.timestamp);
+	
+	// Note: If keywords.length is big, .toFixed(4) now, not last.
+	var score = 1 / (timeDiff / 86400 / 30);
+	//~ var score = Number( (1 / (timeDiff / 86400 / 30)).toFixed(4) );
+	
+	// forEach's faster than .map or .every
+	keywordSet.keywords.forEach(function(keyword) {
+		
+		result[keyword] = result[keyword] ? result[keyword] + score : score ;
+	});
+	
+});
 
-//transfer the raw object to the middle object
-for (var i = 0; i < rawObj.length; i++) {
-  for(var j = 0; j < rawObj[i].keywords.length; j++) {
-    middleObj.push({"keywords":rawObj[i].keywords[j], "timestamp":rawObj[i].timestamp});
-  }
-}
+// Note: If keywords.length is big, .toFixed(4) earlier, not here.
+Object.keys(result).forEach(function(keyword) {
+	result[keyword] = Number(result[keyword].toFixed(4));
+});
 
-//transfer the miidle object to the target object
-for (var i = 0; i < middleObj.length; i++) {
-  var timeDiff = Math.floor(currentTime - middleObj[i].timestamp);
-  const index = targetObj.findIndex(item => item.name === middleObj[i].keywords); // If keywords were not found in target object, push it. Otherwise, re-caculate the score of the keyword
-  if (index === -1) {
-    targetObj.push({"name":middleObj[i].keywords, "score": calculateScore(timeDiff)});
-  }
-  else {
-    targetObj[index].score += calculateScore(timeDiff);
-  }
-}
-console.log(targetObj);
+//~ console.log(result);
