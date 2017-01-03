@@ -1,0 +1,36 @@
+
+----News_Nantou_2 is 南投新聞table
+--NID is"id" , Primary Key in News_Nantou_2
+--Category is"category" 
+--Date is"timestamp" 
+--Latitude is "location.latitude"
+--Longitude is "location.longitude"
+--Publisher is"source_site" 
+--Title is"title"
+--Url is "source"
+--目前缺少positive
+
+----RawIndex_Nantou_2 is Keyword_Nantou_2的Primary Key and News_Nantou_2的Primary Key 的關聯table
+
+SELECT NN2.NID AS id, 
+	   NN2.Category AS category, 
+	   NN2.Date, 
+	   NN2.Latitude, 
+	   NN2.Longitude, 
+	   NN2.Publisher AS source_site, 
+	   NN2.Title AS title, 
+	   NN2.Url,
+	--處理關鍵字轉成字串
+	----Keyword_Nantou_2 is 南投新聞的關鍵字table
+	--//Words is "keyword" --TID is Primary Key in  Keyword_Nantou_2
+	(Select Words  + ',' From RawIndex_Nantou_2 as RN1
+	 join Keyword_Nantou_2 as KN1 on RN1.TID = KN1.TID
+	 Where NID = NN2.NID
+	 Group by NID,Words
+	 For XML PATH('') ) AS keywords
+	 --處理關鍵字轉成字串END
+FROM News_Nantou_2 AS NN2
+join  RawIndex_Nantou_2 AS RN2 ON RN2.NID = NN2.NID
+join Keyword_Nantou_2 AS KN2 ON RN2.TID = KN2.TID
+GROUP BY NN2.NID, NN2.Category, NN2.Date, NN2.Latitude, NN2.Longitude, NN2.Publisher, NN2.Title, NN2.Url
+----END	
