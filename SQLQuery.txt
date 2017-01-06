@@ -1,5 +1,4 @@
-
-----News_Nantou_2 is «n§ë·s»Dtable
+----News_Nantou_2 is å—æŠ•æ–°ètable
 --NID is"id" , Primary Key in News_Nantou_2
 --Category is"category" 
 --Date is"timestamp" 
@@ -8,9 +7,9 @@
 --Publisher is"source_site" 
 --Title is"title"
 --Url is "source"
---¥Ø«e¯Ê¤Öpositive
+--ç›®å‰ç¼ºå°‘positive
 
-----RawIndex_Nantou_2 is Keyword_Nantou_2ªºPrimary Key and News_Nantou_2ªºPrimary Key ªºÃöÁptable
+----RawIndex_Nantou_2 is Eexcel_keywordçš„Primary Key and News_Nantou_2çš„Primary Key çš„é—œè¯table
 
 SELECT NN2.NID AS id, 
 	   NN2.Category AS category, 
@@ -20,17 +19,17 @@ SELECT NN2.NID AS id,
 	   NN2.Publisher AS source_site, 
 	   NN2.Title AS title, 
 	   NN2.Url,
-	--³B²zÃöÁä¦rÂà¦¨¦r¦ê
-	----Keyword_Nantou_2 is «n§ë·s»DªºÃöÁä¦rtable
-	--//Words is "keyword" --TID is Primary Key in  Keyword_Nantou_2
-	(Select Words  + ',' From RawIndex_Nantou_2 as RN1
-	 join Keyword_Nantou_2 as KN1 on RN1.TID = KN1.TID
+	--è™•ç†é—œéµå­—è½‰æˆå­—ä¸²
+	----Eexcel_keyword is å—æŠ•æ–°èçš„é—œéµå­—table
+	--//word is "keyword" --TID is Primary Key in  Eexcel_keyword
+	(Select word  + ',' From RawIndex_Nantou_2 as RN1
+	 join Eexcel_keyword as KN1 on RN1.TID = KN1.TID
 	 Where NID = NN2.NID
-	 Group by NID,Words
+	 Group by NID,word
 	 For XML PATH('') ) AS keywords
-	 --³B²zÃöÁä¦rÂà¦¨¦r¦êEND
+	 --è™•ç†é—œéµå­—è½‰æˆå­—ä¸²END
 FROM News_Nantou_2 AS NN2
 join  RawIndex_Nantou_2 AS RN2 ON RN2.NID = NN2.NID
-join Keyword_Nantou_2 AS KN2 ON RN2.TID = KN2.TID
+join Eexcel_keyword AS KN2 ON RN2.TID = KN2.TID
 GROUP BY NN2.NID, NN2.Category, NN2.Date, NN2.Latitude, NN2.Longitude, NN2.Publisher, NN2.Title, NN2.Url
 ----END	
