@@ -1,3 +1,4 @@
+
 ----News_Nantou_2 is 南投新聞table
 --NID is"id" , Primary Key in News_Nantou_2
 --Category is"category" 
@@ -31,5 +32,7 @@ SELECT NN2.NID AS id,
 FROM News_Nantou_2 AS NN2
 join  RawIndex_Nantou_2 AS RN2 ON RN2.NID = NN2.NID
 join Eexcel_keyword AS KN2 ON RN2.TID = KN2.TID
+Where NN2.Latitude is not null and NN2.Longitude is not null --有的經緯度為null則移除
 GROUP BY NN2.NID, NN2.Category, NN2.Date, NN2.Latitude, NN2.Longitude, NN2.Publisher, NN2.Title, NN2.Url
+
 ----END	
