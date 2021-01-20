@@ -14,7 +14,7 @@
     "cors": "^2.8.1",
     "js-yaml": "^3.3.0",
     "rethinkdbdash": "*",
-    "swagger-tools": "0.10.1"
+    "swagger-tools": "0.10.4"
   },
   "repository": {
     "type": "git",
